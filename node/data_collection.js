@@ -690,6 +690,41 @@ DataCollectionQuery.prototype.avg = function(key) {
 
 };
 
+DataCollectionQuery.prototype.median = function (key) {
+
+  var data = this.sort(key).values();
+  var len = data.length;
+  var middle = Math.floor(len/2.0-0.5);
+
+  if (len % 2 === 1) {
+    return data[middle][key];
+  } else {
+    return (data[middle][key] + data[middle+1][key]) / 2.0;
+  }
+
+};
+
+DataCollectionQuery.prototype.stddevPop = function (key) {
+
+  this.__validate__();
+
+  var data = this._data;
+  var len = data.length;
+  var avg = this.avg(key);
+  var val;
+
+  if(!len) { return 0; }
+
+  val = parseFloat(data[0][key]);
+
+  for(var i = 1; i < len && !isNaN(val); i++) {
+    val += Math.pow(parseFloat(data[i][key]) - avg, 2.0);
+  }
+
+  return Math.sqrt(val / len);
+
+};
+
 DataCollectionQuery.prototype.reduce = function(key, reduceFn) {
 
   this.__validate__();

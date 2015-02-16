@@ -487,6 +487,10 @@
 
       assert.ok(dc.query().avg('age') === ((14 + 15 + 33 + 35 + 40) / 5), 'Avg gives correct value');
 
+      assert.ok(dc.query().median('age') === (33), 'Median gives correct value');
+
+      assert.ok(Math.floor(dc.query().stddevPop('age')*100.0) === (10.56 * 100.0), 'Standard Deviation gives correct value');
+
       assert.ok(dc.query().reduce('age', function(prev, cur) { return prev + cur; }) === (14 + 15 + 33 + 35 + 40), 'Reduce gives correct value');
 
       assert.ok(dc.query().distinct('location').length === 2, 'Distinct gives correct number of distinct values');
