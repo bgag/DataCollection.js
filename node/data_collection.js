@@ -694,6 +694,9 @@ DataCollectionQuery.prototype.median = function (key) {
 
   var data = this.sort(key).values();
   var len = data.length;
+
+  if (len === 0) { return 0; }
+
   var middle = Math.floor(len/2.0-0.5);
 
   if (len % 2 === 1) {
