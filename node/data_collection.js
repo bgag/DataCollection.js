@@ -983,3 +983,5 @@ DataCollectionQuery.prototype.json = function(key) {
   return JSON.stringify(this.values(key));
 
 };
+
+DataCollection.DataCollectionQuery = DataCollectionQuery;

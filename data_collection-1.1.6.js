@@ -984,6 +984,8 @@
 
   };
 
+  DataCollection.DataCollectionQuery = DataCollectionQuery;
+
   window['DataCollection'] = DataCollection;
 
 }(window);
